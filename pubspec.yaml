@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  http: 
   flutter:
     sdk: flutter
 
@@ -51,7 +52,9 @@ flutter:
   assets:
    - assets/plate1.png
    - assets/plate2.png
+   - assets/plate3.png
    - assets/plate4.png
+   - assets/plate5.png
    - assets/plate6.png
    - assets/avocado.png
    - assets/green.jpg

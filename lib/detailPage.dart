@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class DetailsPage extends StatefulWidget {
   final heroTag;
@@ -11,7 +14,27 @@ class DetailsPage extends StatefulWidget {
   _DetailsPageState createState() => _DetailsPageState();
 }
 
+class Resep{
+  final String nama, resep, gambar;
+
+  Resep(this.nama, this.resep, this.gambar);
+}
+
 class _DetailsPageState extends State<DetailsPage> {
+  getResepData()async{
+    var response = 
+      await http.get(Uri.https('secure-reaches-32632.herokuapp.com', '/api/food'));
+    var jsonData = jsonDecode(response.body);
+    List<Resep> reseps = [];
+
+    for(var r in jsonData){
+      Resep makanan = Resep(r['nama'], r['resep'], r['gambar']);
+      reseps.add(makanan);
+    }
+    print(reseps.length);
+    return reseps;
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
